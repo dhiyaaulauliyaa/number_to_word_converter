@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'feature/home/home_page.dart';
+import 'screens/widget_test_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,7 +50,33 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SizedBox(),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Gluon Test')),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const WidgetTestScreen(),
+                ),
+              ),
+              child: const Text('Widget Test'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
