@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'screens/logic_test_screen.dart';
 import 'screens/widget_test_screen.dart';
 
 void main() {
@@ -73,6 +74,14 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               child: const Text('Widget Test'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const LogicTestScreen(),
+                ),
+              ),
+              child: const Text('Logic Test'),
             ),
           ],
         ),
