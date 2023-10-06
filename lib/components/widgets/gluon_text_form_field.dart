@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'error_tooltip.dart';
 
@@ -9,13 +10,26 @@ class GluonTextFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.onChanged,
     this.validator,
+    this.keyboardType,
+    this.inputFormatters,
+    this.maxLength,
+    this.enabled,
+    this.style,
     this.decoration,
+    this.maxLines = 1,
   });
 
   final TextEditingController? controller;
   final ValueChanged<String>? onFieldSubmitted;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final int? maxLength;
+  final bool? enabled;
+  final TextStyle? style;
+  final int? maxLines;
+
   final InputDecoration? decoration;
 
   final _hideTooltip = ValueNotifier(false);
@@ -38,11 +52,17 @@ class GluonTextFormField extends StatelessWidget {
             children: [
               TextFormField(
                 controller: controller,
+                style: style,
+                maxLines: maxLines,
+                enabled: enabled,
                 onFieldSubmitted: onFieldSubmitted,
+                keyboardType: keyboardType,
+                inputFormatters: inputFormatters,
+                maxLength: maxLength,
                 onChanged: (value) {
                   onChanged?.call(value);
                   field.didChange(value);
-                  
+
                   if (_hideTooltip.value) {
                     _hideTooltip.value = value.isNotEmpty;
                   }
